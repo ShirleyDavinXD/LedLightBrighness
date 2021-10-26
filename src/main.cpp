@@ -7,9 +7,9 @@ int groenPin = 10;
 int groenWrde;
 int groenWrdeF;
 
-intervalTimer writeOutputTimer(100);
+intervalTimer writeOutputTimer(2000);
 intervalTimer readInputTimer(25);
-intervalTimer displayWaardenTimer(500);
+intervalTimer displayWaardenTimer(1000);
 
 void setup() {
   pinMode(voltPin,INPUT);
@@ -23,7 +23,7 @@ void loop() {
   groenWrde = (255./1023.)*voltWrde;
   groenWrdeF = 255-groenWrde;
   analogWrite(groenPin, groenWrdeF);
-  if (writeOutputTimer.expired())
+  if (displayWaardenTimer.expired())
   {
     Serial.print("Waarde sensor: ");
     Serial.print(groenWrde);
@@ -31,5 +31,4 @@ void loop() {
     Serial.print("Felheid Licht: ");
     Serial.println(groenWrdeF);
   }
-  
 }
